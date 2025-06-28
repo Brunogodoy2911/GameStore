@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --color-*: initial;
+
   --default-font-family: "Roboto", serif;
 
   /* Fundo e Superfícies */
@@ -8,15 +10,17 @@
   --color-card: #1e1e1e;
 
   /* Cores da Marca e Ação */
-  --color-primary: #7c3aed;
-  --color-accent: #00ffc2;
+  --color-action-primary: #7c3aed;
+  --color-action-secondary: #00ffc2;
 
   /* Cores de Texto */
-  --color-text-primary: #ffffff;
-  --color-text-muted: #a0a0a0;
-  --color-text-on-accent: #121212;
+  --color-primary: #fafafa;
+  --color-muted: #a0a0a0;
+  --color-on-accent: #121212;
 
   /* Cores de UI e Bordas */
   --color-border: #2d2d2d;
   --color-destructive: #e53e3e;
+
+  --color-white: #ffffff;
 }
