@@ -3,11 +3,9 @@ import { NavBar } from "./NavBar";
 
 export function AppLayout() {
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center">
-      <main className="w-full md:w-auto">
-        <NavBar />
-        <Outlet />
-      </main>
-    </div>
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
+      <NavBar />
+      <Outlet />
+    </main>
   );
 }

@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
 @theme {
-  --color-*: initial;
-
-  --default-font-family: "Roboto", serif;
+  --default-font-family: "Roboto", sans-serif;
 
   /* Fundo e Superfícies */
-  --color-background: #121212;
-  --color-card: #1e1e1e;
+  --color-background-deep: #02040a;
+  --color-background-card: #0a0e1a;
 
   /* Cores da Marca e Ação */
-  --color-action-primary: #7c3aed;
-  --color-action-secondary: #00ffc2;
+  /* --- CIANO ATUALIZADO (MAIS SUTIL) --- */
+  --color-primary-cyber: #00f2ea;
+  --color-primary-cyan-muted: #0891b2; /* Um tom de ciano mais escuro e menos saturado */
+  --color-accent-magenta: #ff00c1;
 
   /* Cores de Texto */
-  --color-primary: #fafafa;
-  --color-muted: #a0a0a0;
-  --color-on-accent: #121212;
+  --color-secondary: #d1d5d8;
+  --color-text-muted: #6b7280;
+  --color-primary: #ffffff;
 
   /* Cores de UI e Bordas */
-  --color-border: #2d2d2d;
-  --color-destructive: #e53e3e;
+  --color-border-glow: rgba(
+    8,
+    145,
+    178,
+    0.2
+  ); /* Borda com o novo brilho ciano */
+  --color-destructive: #dc2626;
 
-  --color-white: #ffffff;
+  /* Gradiente "Aurora Boreal" Atualizado */
+  --gradient-aurora-boreal: linear-gradient(
+    135deg,
+    var(--color-accent-magenta) 0%,
+    #7c3aed 50%,
+    var(--color-primary-cyan-muted) 100%
+  );
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border-glow);
+  }
+
+  body {
+    background-color: var(--color-background-deep);
+    color: var(--color-text-bright);
+    font-family: var(--default-font-family);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-aurora {
+    background-image: var(--gradient-aurora-boreal);
+  }
+
+  .text-gradient-aurora {
+    background: var(--gradient-aurora-boreal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
 }
