@@ -1,14 +1,14 @@
 import { Product, type ProductProps } from "./Product";
 
 type Props = {
-  games: ProductProps[];
+  products: ProductProps[];
 };
 
-export function GamesList({ games }: Props) {
+export function GamesList({ products }: Props) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {games.map((game) => (
-        <Product key={game.id} data={game} />
+      {products.map((product) => (
+        <Product key={product.id} data={product} />
       ))}
     </div>
   );

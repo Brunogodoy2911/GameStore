@@ -2,10 +2,10 @@ import { Clock4, Zap } from "lucide-react";
 
 import type { OfferCategory } from "../models/OfferCategory";
 
-interface Props {
+type Props = {
   time: string;
   offers: OfferCategory[];
-}
+};
 
 export function OfferCard({ time, offers }: Props) {
   return (

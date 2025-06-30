@@ -2,18 +2,18 @@ import { Badge } from "./Badge";
 import { Product, type ProductProps } from "./Product";
 
 type Props = {
-  games: ProductProps[];
+  products: ProductProps[];
 };
 
-export function FeaturedGames({ games }: Props) {
-  const featuredGames = games.slice(0, 4);
+export function FeaturedGames({ products }: Props) {
+  const featuredGames = products.slice(0, 4);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {featuredGames.map((game) => (
+      {featuredGames.map((product) => (
         <div className="relative">
           <Badge />
-          <Product key={game.id} data={game} />
+          <Product key={product.id} data={product} />
         </div>
       ))}
     </div>

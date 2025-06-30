@@ -1,50 +1,15 @@
-import { useEffect, useState } from "react";
 import { Award } from "lucide-react";
-
-import { AxiosError } from "axios";
-import { api } from "../services/api";
 
 import { GamesList } from "../components/ProductsList";
 import { OfferCard } from "../components/OfferCard";
 import { PromoBanner } from "../components/PromoBanner";
 import { FeaturedGames } from "../components/FeaturedProducts";
-import type { ProductProps } from "../components/Product";
 
 import { offers } from "../utils/offers";
+import { useProduct } from "../hooks/useProducts";
 
 export function Home() {
-  const [games, setGames] = useState<ProductProps[]>([]);
-
-  async function fetchGames() {
-    try {
-      const response = await api.get("/produtos");
-
-      setGames(
-        response.data.map((game: ProductProps) => ({
-          id: game.id,
-          nome: game.nome,
-          preco: game.preco,
-          foto: game.foto,
-          curtir: game.curtir,
-          categoria: {
-            tipo: game.categoria.tipo,
-          },
-        }))
-      );
-    } catch (e) {
-      console.log(e);
-
-      if (e instanceof AxiosError) {
-        return alert(e.response?.data.message);
-      }
-
-      alert("Não foi possível carregar os jogos!");
-    }
-  }
-
-  useEffect(() => {
-    fetchGames();
-  }, []);
+  const { products } = useProduct();
 
   return (
     <div className="w-full flex flex-col overflow-x-hidden py-[4rem]">
@@ -70,7 +35,7 @@ export function Home() {
           <Award size={32} className="text-yellow-300" />
         </div>
 
-        <FeaturedGames games={games} />
+        <FeaturedGames products={products} />
 
         <div className="my-8">
           <h1 className="text-primary font-bold text-3xl text-center">
@@ -78,7 +43,7 @@ export function Home() {
           </h1>
         </div>
 
-        <GamesList games={games} />
+        <GamesList products={products} />
       </div>
     </div>
   );

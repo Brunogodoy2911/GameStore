@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import { LoadingScreen } from "../pages/LoadingScreen";
 import { AdminRoutes } from "./AdminRoutes";
 import { AppRoutes } from "./AppRoutes";
 import { BrowserRouter } from "react-router";
+import { useProduct } from "../hooks/useProducts";
 
 export function Routes() {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading } = useProduct();
 
   const role = "user";
 
@@ -17,14 +17,6 @@ export function Routes() {
         return <AdminRoutes />;
     }
   }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearInterval(timer);
-  }, []);
 
   if (isLoading) {
     return <LoadingScreen />;

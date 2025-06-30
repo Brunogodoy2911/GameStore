@@ -1,9 +1,9 @@
 import { Gift, Percent } from "lucide-react";
 
-interface Props {
+type Props = {
   title: string;
   porcent: string;
-}
+};
 
 export function PromoBanner({ title, porcent }: Props) {
   return (
