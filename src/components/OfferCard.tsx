@@ -1,4 +1,5 @@
 import { Clock4, Zap } from "lucide-react";
+
 import type { OfferCategory } from "../models/OfferCategory";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 export function OfferCard({ time, offers }: Props) {
   return (
     <div className="flex flex-1 flex-col bg-gradient-to-r from-red-600 to-orange-600 mt-12 rounded-lg p-6">
-      <div className="flex justify-between items-center ">
+      <div className="flex flex-col gap-4 justify-between items-center md:flex-row">
         <div className="flex justify-center items-center gap-4">
           <Zap size={32} className="text-yellow-300 animate-pulse" />
 
@@ -30,7 +31,7 @@ export function OfferCard({ time, offers }: Props) {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mt-4">
+      <div className="grid grid-cols-2 md:flex gap-2 mt-4">
         {offers.map((offer) => (
           <div
             key={offer.category}
@@ -39,7 +40,7 @@ export function OfferCard({ time, offers }: Props) {
             <h1 className="text-2xl text-yellow-300 font-bold">
               {offer.porcent}%
             </h1>
-            <p className="text-sm text-primary ">{offer.category}</p>
+            <p className="text-sm text-primary text-center">{offer.category}</p>
           </div>
         ))}
       </div>
