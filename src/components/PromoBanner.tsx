@@ -7,7 +7,7 @@ interface Props {
 
 export function PromoBanner({ title, porcent }: Props) {
   return (
-    <div className="w-screen h-[12rem] md:h-[8rem] flex flex-col justify-center items-center gap-4 px-6 py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 md:flex-row md:py-0 lg:justify-around">
+    <div className="w-screen h-[12rem] md:h-[8rem] flex flex-col justify-center items-center gap-4 px-6 py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 md:flex-row md:justify-between lg:justify-around">
       <div className="flex justify-center items-center gap-4">
         <Gift size={48} color="#fce046" />
         <div className="flex flex-col justify-center gap-1">

@@ -1,20 +1,43 @@
-import { useState } from "react";
+import { useState, type ComponentProps } from "react";
 
 import { Button } from "./Button";
+import { formatCurrency } from "../utils/formatCurrency";
 
-export function Game() {
+const placeholderImage =
+  "https://ik.imagekit.io/brunogodoy/placeholder.jpg?updatedAt=1751288384316";
+
+export type ProductProps = {
+  id: number;
+  nome: string;
+  preco: number;
+  foto: string | typeof placeholderImage;
+  curtir: number;
+  categoria: {
+    tipo: string;
+  };
+};
+
+type Props = ComponentProps<"div"> & {
+  data: ProductProps;
+};
+
+export function Product({ data, ...rest }: Props) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const imageSrc =
+    data.foto && data.foto.startsWith("http") ? data.foto : placeholderImage;
 
   return (
     <div
       className="group relative bg-gray-800 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-gray-700 hover:border-purple-500/50"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      {...rest}
     >
       <div className="relative overflow-hidden">
         <img
-          src="https://ik.imagekit.io/brunogodoy/imagens_api/god.png?updatedAt=1747847924686"
-          alt="Capa do jogo god of war ragnarok"
+          src={imageSrc}
+          alt={`Capa do Jogo ${data.nome}`}
           className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -31,18 +54,14 @@ export function Game() {
       </div>
 
       <div className="inset-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-        <h1 className="text-primary font-bold text-lg mg-2">
-          God of War Raganrok
-        </h1>
-
-        <p className="text-gray-400 text-sm mb-3 min-w-full">
-          Finalização da saga nordica com chave de ouro
-        </p>
+        <h1 className="text-primary font-bold text-lg mg-2">{data.nome}</h1>
 
         <div className="flex justify-between">
-          <span className="text-yellow-300 font-bold text-lg">R$ 190,90</span>
+          <span className="text-yellow-300 font-bold text-lg">
+            {formatCurrency(data.preco)}
+          </span>
           <span className="text-gray-400 text-sm bg-gray-700 px-2 pt-1 rounded">
-            Rpg
+            {data.categoria.tipo}
           </span>
         </div>
       </div>
