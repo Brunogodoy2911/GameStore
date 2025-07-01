@@ -11,7 +11,7 @@ const variants = {
   button: {
     base: "px-6 py-3",
     icon: "px-7 py-3 gap-2",
-    iconSmall: "px-2 py-2",
+    iconSmall: "h-7 w-7",
   },
 };
 
