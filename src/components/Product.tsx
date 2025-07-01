@@ -6,15 +6,18 @@ import { formatCurrency } from "../utils/formatCurrency";
 const placeholderImage =
   "https://ik.imagekit.io/brunogodoy/placeholder.jpg?updatedAt=1751288384316";
 
+export type CategoryProps = {
+  id?: number;
+  tipo: string | undefined;
+};
+
 export type ProductProps = {
   id: number;
   nome: string;
   preco: number;
   foto: string | typeof placeholderImage;
   curtir: number;
-  categoria: {
-    tipo: string;
-  };
+  categoria: CategoryProps;
 };
 
 type Props = ComponentProps<"div"> & {

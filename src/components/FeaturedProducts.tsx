@@ -5,15 +5,15 @@ type Props = {
   products: ProductProps[];
 };
 
-export function FeaturedGames({ products }: Props) {
+export function FeaturedProducts({ products }: Props) {
   const featuredGames = products.slice(0, 4);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {featuredGames.map((product) => (
-        <div className="relative">
+        <div className="relative" key={product.id}>
           <Badge />
-          <Product key={product.id} data={product} />
+          <Product data={product} />
         </div>
       ))}
     </div>

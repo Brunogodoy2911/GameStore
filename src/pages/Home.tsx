@@ -1,15 +1,16 @@
 import { Award } from "lucide-react";
 
-import { GamesList } from "../components/ProductsList";
+import { ProductsList } from "../components/ProductsList";
 import { OfferCard } from "../components/OfferCard";
 import { PromoBanner } from "../components/PromoBanner";
-import { FeaturedGames } from "../components/FeaturedProducts";
+import { FeaturedProducts } from "../components/FeaturedProducts";
 
 import { offers } from "../utils/offers";
 import { useProduct } from "../hooks/useProducts";
+import { DropDown } from "@/components/Dropdown";
 
 export function Home() {
-  const { products } = useProduct();
+  const { products, productsByCategory } = useProduct();
 
   return (
     <div className="w-full flex flex-col overflow-x-hidden py-[4rem]">
@@ -35,15 +36,19 @@ export function Home() {
           <Award size={32} className="text-yellow-300" />
         </div>
 
-        <FeaturedGames products={products} />
+        <FeaturedProducts products={products} />
 
-        <div className="my-8">
+        <div className="relative flex justify-center items-center mt-12 mb-8">
           <h1 className="text-primary font-bold text-3xl text-center">
             Todos os Jogos
           </h1>
+
+          <div className="absolute right-0 z-50">
+            <DropDown />
+          </div>
         </div>
 
-        <GamesList products={products} />
+        <ProductsList products={productsByCategory} />
       </div>
     </div>
   );

@@ -3,9 +3,9 @@ import { NavBar } from "./NavBar";
 
 export function AppLayout() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
+    <main className="w-full min=h-screen bg-gradient-to-br from-gray-900 to-black">
       <NavBar />
       <Outlet />
-    </main>
+  </main>
   );
 }
