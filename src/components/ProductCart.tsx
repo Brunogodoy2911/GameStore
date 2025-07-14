@@ -1,12 +1,15 @@
 import { Minus, Trash2 } from "lucide-react";
 import { Button } from "./Button";
 import type { ProductProps } from "./Product";
+import { useCart } from "@/hooks/useCart";
 
 type Props = {
   product: ProductProps;
 };
 
 export function ProductCart({ product }: Props) {
+  const { removeProduct, increaseQuantity, decreaseQuantity } = useCart();
+
   return (
     <div className="flex flex-col sm:flex-row justify-between text-primary px-4">
       <div className="flex items-center gap-4">
@@ -28,18 +31,24 @@ export function ProductCart({ product }: Props) {
         <Button
           variant="iconSmall"
           className="bg-gray-700 hover:bg-gray-600 text-lg"
+          onClick={() => decreaseQuantity(product.id)}
         >
           <Minus className="text-primary" size={16} />
         </Button>
-        <span className="mx-2 font-bold text-lg">1</span>
+        <span className="mx-2 font-bold text-lg">{product.quantidade}</span>
         <Button
           variant="iconSmall"
           className="bg-gray-700 hover:bg-gray-600 text-lg"
+          onClick={() => increaseQuantity(product.id)}
         >
           +
         </Button>
 
-        <Button variant="iconSmall" className="bg-destructive ml-2">
+        <Button
+          variant="iconSmall"
+          className="bg-destructive ml-2"
+          onClick={() => removeProduct(product.id)}
+        >
           <Trash2 className="text-primary" size={16} />
         </Button>
       </div>

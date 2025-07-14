@@ -8,6 +8,8 @@ import {
 import { ProductCart } from "./ProductCart";
 import type { ProductProps } from "./Product";
 import { Button } from "./Button";
+import { useCart } from "@/hooks/useCart";
+import { formatCurrency } from "@/utils/formatCurrency";
 
 type Props = {
   products: ProductProps[];
@@ -15,7 +17,11 @@ type Props = {
   onOpenChange: (open: boolean) => void;
 };
 
-export function Cart({ products, isOpen, onOpenChange }: Props) {
+export function Cart({ isOpen, onOpenChange }: Props) {
+  const { productsInCart, clearCart, totalPrice } = useCart();
+
+  const totalPriceFormatted = formatCurrency(totalPrice);
+
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="flex border-l-0 bg-gradient-to-br from-gray-900 to-black">
@@ -25,25 +31,7 @@ export function Cart({ products, isOpen, onOpenChange }: Props) {
           </SheetTitle>
         </SheetHeader>
         <div className="flex flex-col overflow-y-auto">
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
-            <ProductCart key={product.id} product={product} />
-          ))}
-          {products.map((product) => (
+          {productsInCart.map((product) => (
             <ProductCart key={product.id} product={product} />
           ))}
         </div>
@@ -53,7 +41,7 @@ export function Cart({ products, isOpen, onOpenChange }: Props) {
               Preço Total:
             </span>
             <span className="text-2xl text-yellow-300 font-bold">
-              R$ 109,90
+              R$ {totalPriceFormatted}
             </span>
           </div>
 
@@ -62,9 +50,9 @@ export function Cart({ products, isOpen, onOpenChange }: Props) {
           </Button>
           <Button
             className="bg-destructive text-secondary text-lg font-bold hover:bg-destructive/80"
-            onClick={() => onOpenChange(false)}
+            onClick={clearCart}
           >
-            Fechar
+            Limpar Carrinho
           </Button>
         </SheetFooter>
       </SheetContent>

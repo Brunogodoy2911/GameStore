@@ -2,6 +2,7 @@ import { useState, type ComponentProps } from "react";
 
 import { Button } from "./Button";
 import { formatCurrency } from "../utils/formatCurrency";
+import { useCart } from "@/hooks/useCart";
 
 const placeholderImage =
   "https://ik.imagekit.io/brunogodoy/placeholder.jpg?updatedAt=1751288384316";
@@ -15,6 +16,7 @@ export type ProductProps = {
   id: number;
   nome: string;
   preco: number;
+  quantidade?: number;
   foto: string | typeof placeholderImage;
   curtir: number;
   categoria: CategoryProps;
@@ -25,10 +27,15 @@ type Props = ComponentProps<"div"> & {
 };
 
 export function Product({ data, ...rest }: Props) {
+  const { addProduct } = useCart();
   const [isHovered, setIsHovered] = useState(false);
 
   const imageSrc =
     data.foto && data.foto.startsWith("http") ? data.foto : placeholderImage;
+
+  function addCart() {
+    addProduct(data);
+  }
 
   return (
     <div
@@ -47,7 +54,7 @@ export function Product({ data, ...rest }: Props) {
 
         {isHovered && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center transition-all duration-300">
-            <Button>
+            <Button onClick={() => addCart()}>
               <h1 className="font-bold text-base text-secondary">
                 Adicionar ao Carrinho
               </h1>

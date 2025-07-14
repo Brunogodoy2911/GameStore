@@ -1,5 +1,4 @@
-// DropDown.tsx
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { ListFilter } from "lucide-react";
 
 import {
@@ -35,7 +34,10 @@ export function DropDown() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-48 sm:w-56 bg-gray-500">
+      <DropdownMenuContent
+        align="end"
+        className="w-48 sm:w-56 bg-gray-500 z-20"
+      >
         <DropdownMenuLabel className="text-base font-bold text-white">
           Categorias
         </DropdownMenuLabel>

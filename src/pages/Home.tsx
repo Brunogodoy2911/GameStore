@@ -43,7 +43,7 @@ export function Home() {
             Todos os Jogos
           </h1>
 
-          <div className="absolute right-0 z-50">
+          <div className="absolute right-0 z-20">
             <DropDown />
           </div>
         </div>
