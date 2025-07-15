@@ -1,12 +1,8 @@
 import { useCart } from "@/hooks/useCart";
 import { ShoppingCart } from "lucide-react";
 
-type Props = {
-  onCartClick: () => void;
-};
-
-export function NavBar({ onCartClick }: Props) {
-  const { totalQuantity } = useCart();
+export function NavBar() {
+  const { totalQuantity, setIsCartOpen } = useCart();
 
   return (
     <nav className="fixed top-0 w-full h-[4rem] flex justify-between lg:justify-around lg:px-0 items-center bg-gray-900/95 backdrop-blur-sm border-b border-purple-500/20 px-6 z-30">
@@ -19,7 +15,7 @@ export function NavBar({ onCartClick }: Props) {
       <div
         className="text-[var(--color-secondary)]
          hover:text-primary transition-colors cursor-pointer md:px-4"
-        onClick={onCartClick}
+        onClick={() => setIsCartOpen(true)}
       >
         <div className="relative flex gap-2">
           <ShoppingCart size={24} />

@@ -11,16 +11,20 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./Button";
 import { useProduct } from "@/hooks/useProducts";
+import type { CategoryProps } from "@/components/Product";
 
 export function DropDown() {
   const { products, setCategory, category } = useProduct();
 
-  const uniqueCategories = useMemo(() => {
-    const categoriesMap = new Map();
+  const allCategories = useMemo(() => {
+    const categoriesMap = new Map<number, CategoryProps>();
     products.forEach((product) => {
-      categoriesMap.set(product.categoria.id, product.categoria);
+      if (product.categoria.id !== undefined) {
+        categoriesMap.set(product.categoria.id, product.categoria);
+      }
     });
-    return Array.from(categoriesMap.values());
+    const uniqueCategories = Array.from(categoriesMap.values());
+    return [{ id: 0, tipo: "Todos" }, ...uniqueCategories];
   }, [products]);
 
   return (
@@ -42,10 +46,10 @@ export function DropDown() {
           Categorias
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {uniqueCategories.map((cat) => (
+        {allCategories.map((cat) => (
           <DropdownMenuCheckboxItem
             key={cat.id}
-            checked={category?.id === cat.id}
+            checked={category?.tipo === cat.tipo}
             onCheckedChange={() => {
               setCategory(cat);
             }}

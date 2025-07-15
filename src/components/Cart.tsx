@@ -6,24 +6,24 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { ProductCart } from "./ProductCart";
-import type { ProductProps } from "./Product";
 import { Button } from "./Button";
 import { useCart } from "@/hooks/useCart";
 import { formatCurrency } from "@/utils/formatCurrency";
 
-type Props = {
-  products: ProductProps[];
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-};
-
-export function Cart({ isOpen, onOpenChange }: Props) {
-  const { productsInCart, clearCart, totalPrice } = useCart();
+export function Cart() {
+  const {
+    productsInCart,
+    clearCart,
+    totalPrice,
+    isCartOpen,
+    setIsCartOpen,
+    finishCart,
+  } = useCart();
 
   const totalPriceFormatted = formatCurrency(totalPrice);
 
   return (
-    <Sheet open={isOpen} onOpenChange={onOpenChange}>
+    <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
       <SheetContent className="flex border-l-0 bg-gradient-to-br from-gray-900 to-black">
         <SheetHeader>
           <SheetTitle className="text-primary font-bold text-2xl">
@@ -45,7 +45,10 @@ export function Cart({ isOpen, onOpenChange }: Props) {
             </span>
           </div>
 
-          <Button className="text-secondary text-lg font-bold">
+          <Button
+            onClick={finishCart}
+            className="text-secondary text-lg font-bold"
+          >
             Finalizar Compra
           </Button>
           <Button

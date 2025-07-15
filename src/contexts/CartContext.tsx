@@ -6,16 +6,20 @@ import {
   type ReactNode,
 } from "react";
 import type { ProductProps } from "@/components/Product";
+import { toast } from "react-toastify";
 
 type CartContext = {
   productsInCart: ProductProps[];
   totalPrice: number;
   totalQuantity: number;
+  isCartOpen: boolean;
   addProduct: (product: ProductProps) => void;
   removeProduct: (productId: number) => void;
   clearCart: () => void;
   increaseQuantity: (productId: number) => void;
   decreaseQuantity: (productId: number) => void;
+  setIsCartOpen: (isOpen: boolean) => void;
+  finishCart: () => void;
 };
 
 const LOCAL_STORAGE_KEY = "@game-store:cart";
@@ -24,6 +28,7 @@ export const CartContext = createContext({} as CartContext);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [productsInCart, setProductsInCart] = useState<ProductProps[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   function addProduct(product: ProductProps) {
     setProductsInCart((currentProducts) => {
@@ -39,6 +44,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return [...currentProducts, { ...product, quantidade: 1 }];
       }
     });
+    setIsCartOpen(true);
+    toast.success("Produto adicionado ao carrinho!");
   }
 
   function removeProduct(productId: number) {
@@ -71,6 +78,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   function clearCart() {
     setProductsInCart([]);
+  }
+
+  function finishCart() {
+    clearCart();
+    setIsCartOpen(false);
+
+    toast.success("Compra finalizada com sucesso!");
   }
 
   function fetchCart() {
@@ -118,6 +132,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         decreaseQuantity,
         totalPrice,
         totalQuantity,
+        isCartOpen,
+        setIsCartOpen,
+        finishCart,
       }}
     >
       {children}
