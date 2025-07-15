@@ -3,7 +3,7 @@
 # GameStore 🎮
 
 <div align="center">
-  <img src="https://ik.imagekit.io/brunogodoy/Thumb.png?updatedAt=1752553690411" title="source: imgur.com" alt="Logo Refund 2.0" width="400"/>
+  <img src="https://ik.imagekit.io/brunogodoy/Thumb.png?updatedAt=1752553690411" title="source: imgur.com"/>
 </div>
 
 ![Status](https://img.shields.io/badge/status-concluído-green)
