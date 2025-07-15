@@ -60,8 +60,8 @@ Siga os passos abaixo para executar o projeto em seu ambiente local.
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/gamestore.git
-cd gamestore
+git clone https://github.com/Brunogodoy2911/GameStore.git
+cd GameStore
 ```
 
 2. **Instale as dependências:**
