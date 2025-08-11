@@ -110,10 +110,16 @@ src/
 └── utils/        # Funções utilitárias (formatCurrency, offers)
 ```
 
+## 🔗 API Backend
+
+Este projeto frontend consome uma API REST construída em Java com Spring Boot, que é responsável por toda a lógica de negócio e persistência de dados.
+
+-   **Repositório do Backend:** (https://github.com/Brunogodoy2911/loja_games_api)
+
 ## 👨‍💻 Autor
 
 <div align="center">
 
-- **Bruno Godoy** - [@brunogodoy2911](https://github.com/brunogodoy2911)
+- **Bruno Godoy** - [@Brunogodoy2911](https://github.com/Brunogodoy2911)
 
 </div>
